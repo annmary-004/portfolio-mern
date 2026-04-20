@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Contact.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -13,9 +13,48 @@ import {
 } from "react-icons/fa";
 
 const Contact = () => {
+  const [loading, setLoading] = useState(false);
+  const [statusMsg, setStatusMsg] = useState("");
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatusMsg("");
+
+    const formData = {
+      name: e.target.name.value,
+      email: e.target.email.value,
+      message: e.target.message.value,
+      _subject: "New Contact from Portfolio!"
+    };
+
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/annmarygeorgy775@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setStatusMsg("Message sent successfully! 🚀");
+        e.target.reset();
+      } else {
+        // If they haven't activated yet, Formsubmit throws an error for AJAX.
+        setStatusMsg("Check your Gmail inbox and click 'Activate' first!");
+      }
+    } catch (err) {
+      setStatusMsg("Check your Gmail inbox and click 'Activate' first!");
+    }
+
+    setLoading(false);
+  };
 
   return (
     <div className="contact-section" id="contact">
@@ -55,11 +94,8 @@ const Contact = () => {
 
         {/* RIGHT FORM */}
         <div className="contact-right" data-aos="fade-left">
-          <form className="contact-form" action="https://formsubmit.co/annmarygeorgy775@gmail.com" method="POST">
+          <form className="contact-form" onSubmit={handleSubmit}>
             
-            <input type="hidden" name="_subject" value="New Contact from Portfolio!" />
-            <input type="hidden" name="_captcha" value="false" />
-
             <input 
               type="text" 
               name="name" 
@@ -81,9 +117,15 @@ const Contact = () => {
               required 
             ></textarea>
 
-            <button type="submit">
-              Send
+            <button type="submit" disabled={loading}>
+              {loading ? "Sending..." : "Send"}
             </button>
+            
+            {statusMsg && (
+              <p style={{ marginTop: "15px", fontWeight: "bold", color: statusMsg.includes("🚀") ? "#00f2fe" : "#ff4d4d" }}>
+                {statusMsg}
+              </p>
+            )}
 
           </form>
         </div>
