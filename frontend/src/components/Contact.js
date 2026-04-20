@@ -31,26 +31,28 @@ const Contact = () => {
     };
 
     try {
-      const res = await fetch("https://portfolio-mern-93ij.onrender.com/api/contact", {
+      // Fast & reliable form submission directly to email
+      const res = await fetch("https://formsubmit.co/ajax/annmarygeorgy775@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json"
         },
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json(); // 
+      const data = await res.json(); 
 
       if (res.ok) {
-        alert("Message sent & saved 🚀");
+        alert("Message sent successfully! 🚀");
         e.target.reset();
       } else {
-        alert(data.error || "Failed ");
+        alert("Failed to send message.");
       }
 
     } catch (error) {
-      console.log(error); // 
-      alert("Server error ");
+      console.log(error);
+      alert("Server error. Please try again later.");
     }
 
     setLoading(false);
