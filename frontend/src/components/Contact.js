@@ -13,50 +13,9 @@ import {
 } from "react-icons/fa";
 
 const Contact = () => {
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
   }, []);
-
-  // SUBMIT FUNCTION
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-
-    const formData = {
-      name: e.target.user_name.value,
-      email: e.target.user_email.value,
-      message: e.target.message.value,
-    };
-
-    try {
-      // Fast & reliable form submission directly to email
-      const res = await fetch("https://formsubmit.co/ajax/annmarygeorgy775@gmail.com", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json"
-        },
-        body: JSON.stringify(formData),
-      });
-
-      const data = await res.json(); 
-
-      if (res.ok) {
-        alert("Message sent successfully! 🚀");
-        e.target.reset();
-      } else {
-        alert("Failed to send message.");
-      }
-
-    } catch (error) {
-      console.log(error);
-      alert("Server error. Please try again later.");
-    }
-
-    setLoading(false);
-  };
 
   return (
     <div className="contact-section" id="contact">
@@ -96,18 +55,21 @@ const Contact = () => {
 
         {/* RIGHT FORM */}
         <div className="contact-right" data-aos="fade-left">
-          <form className="contact-form" onSubmit={handleSubmit}>
+          <form className="contact-form" action="https://formsubmit.co/annmarygeorgy775@gmail.com" method="POST">
             
+            <input type="hidden" name="_subject" value="New Contact from Portfolio!" />
+            <input type="hidden" name="_captcha" value="false" />
+
             <input 
               type="text" 
-              name="user_name" 
+              name="name" 
               placeholder="Name" 
               required 
             />
 
             <input 
               type="email" 
-              name="user_email" 
+              name="email" 
               placeholder="Email" 
               required 
             />
@@ -119,8 +81,8 @@ const Contact = () => {
               required 
             ></textarea>
 
-            <button type="submit" disabled={loading}>
-              {loading ? "Sending..." : "Send"}
+            <button type="submit">
+              Send
             </button>
 
           </form>
