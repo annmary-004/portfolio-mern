@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top left, #111c44, #050a24);
+  color: white;
+   overflow-x: hidden;
+}
+html {
+  scroll-behavior: smooth;
+}

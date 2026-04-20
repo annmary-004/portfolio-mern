@@ -1,0 +1,89 @@
+.services {
+  padding: 100px 80px;
+  text-align: center;
+}
+
+.services-title {
+  font-size: 32px;
+  margin-bottom: 60px;
+}
+
+/* GRID */
+.services-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/* CARD */
+.service-card {
+  padding: 30px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(0, 242, 254, 0.3);
+  transition: 0.4s;
+  position: relative;
+}
+
+/* GLOW EFFECT */
+.service-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 15px;
+  padding: 2px;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* ICON */
+.icon {
+  font-size: 30px;
+  color: #00f2fe;
+  margin-bottom: 15px;
+}
+
+/* TEXT */
+.service-card h3 {
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  opacity: 0.7;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* HOVER */
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 242, 254, 0.3);
+}
+/* ICON HOVER EFFECT */
+.service-card .icon {
+  transition: 0.3s;
+}
+
+.service-card:hover .icon {
+  transform: scale(1.2);
+}
+
+/* TEXT COLOR ON HOVER */
+.service-card:hover h3 {
+  color: #00f2fe;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .services {
+    padding: 60px 20px;
+  }
+
+  .services-container {
+    grid-template-columns: 1fr;
+  }
+}
