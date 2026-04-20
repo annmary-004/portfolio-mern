@@ -68,3 +68,26 @@
   0%, 50%, 100% { opacity: 1; }
   25%, 75% { opacity: 0; }
 }
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 40px;
+    letter-spacing: -1px;
+  }
+  .hero::before, .hero::after {
+    width: 300px;
+    height: 300px;
+    filter: blur(50px);
+  }
+  .intro {
+    font-size: 18px;
+  }
+  .btn {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}

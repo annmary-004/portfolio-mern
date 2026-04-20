@@ -19,7 +19,7 @@ const Contact = () => {
     AOS.init({ duration: 1000, once: true });
   }, []);
 
-  // ✅ SUBMIT FUNCTION
+  // SUBMIT FUNCTION
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -39,18 +39,18 @@ const Contact = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json(); // 🔥 important
+      const data = await res.json(); // 
 
       if (res.ok) {
         alert("Message sent & saved 🚀");
         e.target.reset();
       } else {
-        alert(data.error || "Failed ❌");
+        alert(data.error || "Failed ");
       }
 
     } catch (error) {
-      console.log(error); // 🔥 see real error in console
-      alert("Server error ❌");
+      console.log(error); // 
+      alert("Server error ");
     }
 
     setLoading(false);
