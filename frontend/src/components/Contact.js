@@ -43,7 +43,7 @@ const Contact = () => {
       });
 
       if (res.ok) {
-        setStatusMsg("Message sent successfully! 🚀");
+        setStatusMsg("Message sent successfully! ");
         e.target.reset();
       } else {
         // If they haven't activated yet, Formsubmit throws an error for AJAX.
@@ -122,7 +122,7 @@ const Contact = () => {
             </button>
             
             {statusMsg && (
-              <p style={{ marginTop: "15px", fontWeight: "bold", color: statusMsg.includes("🚀") ? "#00f2fe" : "#ff4d4d" }}>
+              <p style={{ marginTop: "15px", fontWeight: "bold", color: statusMsg.includes("") ? "#00f2fe" : "#ff4d4d" }}>
                 {statusMsg}
               </p>
             )}
