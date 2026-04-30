@@ -10,6 +10,7 @@
   padding: 20px 80px;
   background: rgba(5, 10, 36, 0.8);
   backdrop-filter: blur(10px);
+  width: 100%;
 }
 
 /* LOGO */
@@ -95,7 +96,8 @@
     right: -100%;
     flex-direction: column;
     background: #050a24;
-    width: 200px;
+    width: min(220px, calc(100vw - 32px));
+    max-width: calc(100vw - 32px);
     padding: 20px;
     gap: 20px;
     transition: 0.3s;

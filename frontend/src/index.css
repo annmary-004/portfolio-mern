@@ -1,10 +1,27 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
   background: radial-gradient(circle at top left, #111c44, #050a24);
   color: white;
-   overflow-x: hidden;
+  overflow-x: hidden;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
 html {
   scroll-behavior: smooth;
 }
